@@ -1,5 +1,5 @@
 import csv, sys
-from path_utilities import Node, QueueFrontier
+from util import Node, QueueFrontier
 
 
 names = {}
