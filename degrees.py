@@ -39,8 +39,12 @@ def load_data(directory):
 
 
 def main():
+    if len(sys.argv) > 2:
+        sys.exit("Usage: python degrees.py [directory]")
+    directory = sys.argv[1] if len(sys.argv) == 2 else "large"
+
     print("Loading data...")
-    load_data("degrees/small")
+    load_data(directory)
     print("Data loaded.")
 
     source = person_id_for_name(input("Name: "))
@@ -95,6 +99,7 @@ def name_from_id(id_num, flag="person"):
 
 def shortest_path(source, target):
     frontier = QueueFrontier()
+    explored = set()
     cur_node = Node(parent=None, action=None, state=(source, None))
     frontier.add(cur_node)
     while True:
@@ -113,9 +118,9 @@ def shortest_path(source, target):
                 cells.reverse()
                 return cells
             else:
-                frontier.explored.add(cur_node.state)
+                explored.add(cur_node.state)
                 for new_state in neighbors_for_person(cur_node.state[0]):
-                    if (new_state not in frontier.explored) and not frontier.contains_state(new_state):
+                    if (new_state not in explored) and not frontier.contains_state(new_state):
                         child = Node(parent=cur_node, action=None, state=new_state)
                         frontier.add(child)
 
