@@ -112,7 +112,7 @@ def shortest_path(source, target):
                 cells = []
                 while cur_node.parent is not None:
                     actions.append(cur_node.action)
-                    cells.append(cur_node.state)
+                    cells.append(cur_node.state[::-1])
                     cur_node = cur_node.parent
                 cells.reverse()
                 return cells
