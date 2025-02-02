@@ -114,8 +114,6 @@ def shortest_path(source, target):
                     actions.append(cur_node.action)
                     cells.append(cur_node.state)
                     cur_node = cur_node.parent
-                actions.reverse()
-                cells.reverse()
                 return cells
             else:
                 explored.add(cur_node.state)
